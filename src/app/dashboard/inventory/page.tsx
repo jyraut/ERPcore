@@ -80,13 +80,7 @@ function InventoryPageContent() {
         {/* Modern Table Layout */}
         <div className="hidden md:flex rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden min-h-[400px] flex-col">
           {" "}
-          {isLoading ? (
-            <div className="flex-1 flex items-center justify-center">
-              <p className="text-slate-500 animate-pulse font-medium">
-                Scanning warehouse records...
-              </p>
-            </div>
-          ) : filteredInventory?.length === 0 ? (
+          {filteredInventory?.length === 0 ? (
             <div className="flex-1 flex items-center justify-center">
               <InventoryEmptyState query={query} />
             </div>

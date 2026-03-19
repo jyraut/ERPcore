@@ -14,7 +14,7 @@ export function InventoryHeader() {
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();
-const { data: inventory = [] } = useGetInventory();
+  const { data: inventory = [] } = useGetInventory();
   // Local state for the input to keep typing feeling instant
   const [value, setValue] = useState(searchParams.get("q") || "");
   const debouncedValue = useDebounce(value, 300);
@@ -34,7 +34,7 @@ const { data: inventory = [] } = useGetInventory();
     }
   }, [debouncedValue, pathname, router]);
 
-return (
+  return (
     <div className="flex flex-col gap-6">
       <div className="flex flex-col md:flex-row md:items-end justify-between gap-4">
         <div className="space-y-1">
@@ -45,9 +45,13 @@ return (
             Manage assets and real-time stock levels.
           </p>
         </div>
-        
+
         <div className="flex gap-3">
-          <Button onClick={() => exportInventoryToCSV(inventory)} variant="outline" className="rounded-xl font-bold dark:border-slate-800">
+          <Button
+            onClick={() => exportInventoryToCSV(inventory)}
+            variant="outline"
+            className="rounded-xl font-bold dark:border-slate-800"
+          >
             <Download className="h-4 w-4" />
             Export CSV
           </Button>
