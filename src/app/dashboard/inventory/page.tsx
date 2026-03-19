@@ -51,6 +51,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { Suspense } from "react";
 
 export default function InventoryPage() {
   const searchParams = useSearchParams();
@@ -83,11 +84,18 @@ export default function InventoryPage() {
     );
 
   return (
-    <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen">
+        <p className="text-slate-500 animate-pulse">Loading workspace...</p>
+      </div>
+    }>
+       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <InventoryHeader />
       <InventoryStats />
       {/* Modern Table Layout */}
-<div className="hidden md:flex rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden min-h-[400px] flex-col">        {isLoading ? (
+      <div className="hidden md:flex rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 overflow-hidden min-h-[400px] flex-col">
+        {" "}
+        {isLoading ? (
           <div className="flex-1 flex items-center justify-center">
             <p className="text-slate-500 animate-pulse font-medium">
               Scanning warehouse records...
@@ -371,6 +379,8 @@ export default function InventoryPage() {
         ))}
       </div>
     </div>
+    </Suspense>
+   
   );
 }
 
