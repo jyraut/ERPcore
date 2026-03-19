@@ -57,7 +57,6 @@ function InventoryPageContent() {
   const searchParams = useSearchParams();
   const query = searchParams.get("q") || "";
 
-  // One single, clean data source
   const { data: products, isLoading } = useGetInventory(query);
   const updateStock = useUpdateStock();
   const [selectedWarehouse, setSelectedWarehouse] = useState<string>("ALL");
@@ -70,17 +69,9 @@ function InventoryPageContent() {
 
   // 3. Export uses the filtered list
   const handleExport = () => exportInventoryToCSV(filteredInventory);
-  if (isLoading)
-    return (
-      <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-pulse flex flex-col items-center gap-4">
-          <PackageSearch className="h-10 w-10 text-slate-300" />
-          <p className="text-slate-400 font-medium tracking-tight">
-            Syncing inventory...
-          </p>
-        </div>
-      </div>
-    );
+
+  if (isLoading) return <LoadingState />;
+
   return (
     <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
       <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-700">
@@ -379,18 +370,20 @@ function InventoryPageContent() {
 
 export default function InventoryPage() {
   return (
-    <Suspense
-      fallback={
-        <div className="flex items-center justify-center min-h-screen">
-          <div className="animate-pulse flex flex-col items-center gap-4">
-            <PackageSearch className="h-10 w-10 text-slate-300" />
-            <p className="text-slate-400 font-medium">Loading workspace...</p>
-          </div>
-        </div>
-      }
-    >
+    <Suspense fallback={<LoadingState />}>
       <InventoryPageContent />
     </Suspense>
+  );
+}
+
+function LoadingState() {
+  return (
+    <div className="flex items-center justify-center min-h-[400px]">
+      <div className="animate-pulse flex flex-col items-center gap-4">
+        <PackageSearch className="h-10 w-10 text-slate-300" />
+        <p className="text-slate-400 font-medium">Syncing inventory...</p>
+      </div>
+    </div>
   );
 }
 
