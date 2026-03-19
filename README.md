@@ -1,36 +1,66 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ERPCore | Advanced Enterprise Resource Planning Suite
 
-## Getting Started
+A high-performance, industrial-grade ERP dashboard built with **Next.js 14**. This project offering high-density data environment for managing global inventory and personnel.
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🚀 Core Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 📦 Precision Inventory & Logistics
+* **Multi-Warehouse Management:** Real-time stock tracking across "Warehouse A", "Warehouse B", and "Distribution Centers".
+* **Automated Fiscal Logic:** Dynamic tax liability calculations ($Price \times Stock \times (1 + TaxRate)$) calculated on the fly.
+* **Inventory Health:** Visual indicators for "Low Stock" and "Out of Stock" states with optimistic UI updates.
+* **Audit-Ready Exports:** One-click CSV generation for physical warehouse reconciliations.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 👥 Human Capital Management
+* **Personnel Lifecycle:** Full tracking for departments including Engineering, Operations, and Finance.
+* **Role-Based Access Control (RBAC):** Integrated `PermissionGate` components to ensure only authorized roles (Admin/Manager) can modify sensitive records.
+* **Status Monitoring:** Real-time visibility into employee availability (Active, On Leave, Terminated).
 
-## Learn More
+### 📱 Responsive "Hybrid" Architecture
+* **Adaptive Viewports:** Seamlessly transitions from high-density **Data Tables** (Desktop) to **Mobile Action Cards** (Mobile).
+* **Modern UX:** Built with a dark-mode first approach using Tailwind CSS and Radix UI primitives.
 
-To learn more about Next.js, take a look at the following resources:
+## 🛠️ Technical Stack
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* **Framework:** Next.js 14 (App Router)
+* **Language:** TypeScript (Strict Type Safety)
+* **State Management:** TanStack Query (React Query)
+* **UI Components:** Shadcn UI + Tailwind CSS
+* **Icons & Data Viz:** Lucide React + Recharts
+* **API Handling:** Axios + Mock Service Worker (MSW) logic
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙️ Installation & Setup
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/jyraut/ERPcore.git]
+    cd erp-core
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
+
+3.  **Environment Configuration:**
+    Create a `.env.local` for local network testing (Mobile debugging):
+    ```env
+    NEXT_PUBLIC_API_URL=http://your-local-ip:3000/api
+    ```
+
+4.  **Launch Development Server:**
+    ```bash
+    npm run dev
+    ```
+
+## 🔒 Security & Data Integrity
+* **Permission Gates:** Conditional rendering based on user role strings.
+* **Skeleton States:** Sophisticated loading states to prevent Layout Shift (CLS).
+* **Validation:** Strict TypeScript interfaces for all `Product` and `Employee` objects.
+
+---
+
+**Developed with a focus on Scalability, Maintainability, and Enterprise UX.**

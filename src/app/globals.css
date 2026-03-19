@@ -127,3 +127,10 @@
     @apply font-sans;
   }
 }
+@layer base {
+  html {
+    /* This subtly shrinks the base font-size, mimicking an 80-90% zoom level 
+       while technically staying at 100% browser zoom */
+    font-size: 14px; 
+  }
+}
